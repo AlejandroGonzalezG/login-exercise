@@ -5,9 +5,9 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div className="container-fluid">
-				<a className="navbar-brand" href="#">
+				<Link className="navbar-brand" to="/">
 					MyBlog.com
-				</a>
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -19,17 +19,17 @@ export const Navbar = () => {
 				>
 					<span className="navbar-toggler-icon" />
 				</button>
-				<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
 					<div className="navbar-nav">
-						<a className="nav-link" href="#">
+						<Link className="nav-link" to="/register">
 							Signup
-						</a>
-						<a className="nav-link" href="#">
+						</Link>
+						<Link className="nav-link" to="/login">
 							Login
-						</a>
-						<a className="nav-link" href="#">
+						</Link>
+						<Link className="nav-link" to="/profile">
 							My Profile
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

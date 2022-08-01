@@ -2,9 +2,9 @@ from flask import Flask, request, jsonify
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-from models import db
-from routes.auth import auth
-from routes.private import private
+from api.models import db
+from api.auth import auth
+from api.private import private
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
