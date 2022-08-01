@@ -33,15 +33,18 @@ class Profile(db.Model):
     __tablename__='profiles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), default="")
-    instagram = db.Column(db.String(50), default="")
-    facebook = db.Column(db.String(50), default="")
-    twitter = db.Column(db.String(50), default="")
-    github = db.Column(db.String(50), default="")
+    phone_number = db.Column(db.String(20))
+    instagram = db.Column(db.String(50), default="@something")
+    facebook = db.Column(db.String(50), default="facebook.com/something")
+    twitter = db.Column(db.String(50), default="twitter.com/something")
+    github = db.Column(db.String(50), default="github.com/Something")
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def serialize(self):
         return {
             "id":self.id,
             "name":self.name,
+            "phone_number":self.phone_number,
             "instagram":self.instagram,
             "facebook":self.facebook,
             "twitter":self.twitter,

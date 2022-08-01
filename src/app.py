@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from models import db
 from routes.auth import auth
-from routes.account import account
+from routes.private import private
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
