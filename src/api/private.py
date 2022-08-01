@@ -13,7 +13,7 @@ def get_profile():
     data = {
         "user": user.serialize()
     }
-    return jsonify({ "status": "success", "message": "Profile cargado", "data": data }), 200
+    return jsonify({ "status": "Success", "message": "Profile cargado", "data": data }), 200
 
 
 @private.route('/private', methods=['PUT'])
@@ -45,5 +45,5 @@ def update_profile():
     data = {
         "user": user.serialize()
     }
-    return jsonify({ "status": "success", "message": "Profile cargado", "data": data }), 200
+    return jsonify({ "status": "Success", "message": "Profile cargado", "data": data }), 200
 

@@ -16,7 +16,7 @@ def login():
     
     userExits = User.query.filter_by(email=email).first()
     if not userExits: return jsonify({ "status": "Failed", "message": "Email/Password son incorrectos", "data": None }), 401
-    if not check_password_hash(userExits.password, password): return jsonify({ "status": "failed", "message": "Email/Password son incorrectos", "data": None }), 401
+    if not check_password_hash(userExits.password, password): return jsonify({ "status": "Failed", "message": "Email/Password son incorrectos", "data": None }), 401
 
     expires = datetime.timedelta(minutes=30)
 
@@ -27,7 +27,7 @@ def login():
         "user": userExits.serialize()
     }
 
-    return jsonify({ "status": "success", "message": "Login realizado de forma correcta", "data": data }), 200
+    return jsonify({ "status": "Success", "message": "Login realizado de forma correcta", "data": data }), 200
 
 @auth.route('/register', methods=['POST'])
 def register():
@@ -41,8 +41,8 @@ def register():
     if not email: return jsonify({ "status": "Failed", "message": "El email es requerido", "data": None }), 400
     if not password: return jsonify({ "status": "Failed", "message": "El password es requerido", "data": None }), 400
     
-    #userFound = User.query.filter_by(email=email).first()
-    #if userFound: return jsonify({ "status": "Failed", "message": "User already exists", "data": None }), 400
+    userFound = User.query.filter_by(email=email).first()
+    if userFound: return jsonify({ "status": "Failed", "message": "User already exists", "data": None }), 400
 
     user = User()
     user.email = email
