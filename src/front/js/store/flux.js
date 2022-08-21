@@ -5,11 +5,15 @@ import Swal from 'sweetalert2';
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			apiUrl: 'https://5000-alejandrogo-loginexerci-q1q83uzg0az.ws-us54.gitpod.io',
+			apiUrl: 'https://5000-alejandrogo-loginexerci-2oponp52775.ws-us62.gitpod.io',
 			email: '',
 			password: '',
 			name: '',
 			phone_number: '',
+			instagram: '',
+			facebook: '',
+			twitter: '',
+			github: '',
 			errors: null,
 			currentUser: null,
 		},
@@ -37,14 +41,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				const { status, message, data } = await response.json();
 				console.log(data);
-				if (status === 'Failed') {
+				if (status === 'failed') {
 					toast.error(message);
 				}
-				if (status === 'Success') {
+				if (status === 'success') {
 					Swal.fire({
 						icon: 'success',
 						title: message,
 						showConfirmButton: false,
+						timer: 1500
 					})
 					sessionStorage.setItem('currentUser', JSON.stringify(data));
 					setStore({
@@ -72,11 +77,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				const { status, message, data } = await response.json();
 				console.log(data);
-				if (status === 'Failed') {
+				if (status === 'failed') {
 					toast.error(message);
 				}
 
-				if (status === 'Success') {
+				if (status === 'success') {
 					Swal.fire({
 						icon: 'success',
 						title: message,
@@ -100,7 +105,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						email: currentUser?.user.email,
 						password: '',
 						name: currentUser?.user?.profile?.name,
-						phone_number: currentUser?.user?.profile?.phone_number
+						phone_number: currentUser?.user?.profile?.phone_number,
+						instagram: currentUser?.user?.profile?.instagram,
+						facebook: currentUser?.user?.profile?.facebook,
+						twitter: currentUser?.user?.profile?.twitter,
+						github: currentUser?.user?.profile?.github
 					})
 				}
 			},
@@ -117,6 +126,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						email: '',
 						password: '',
+						instagram: '',
+						facebook: '',
+						twitter: '',
+						github: '',
 						currentUser: null,
 					})
 					getActions().checkAuthentication();
@@ -124,14 +137,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			handleProfile: async (e) => {
 				e.preventDefault();
-				const { apiUrl, email, password, name, phone_number, currentUser } = getStore();
+				const { apiUrl, email, password, name, phone_number, instagram, facebook, twitter, github, currentUser } = getStore();
 				const campos = {
 					email: email,
 					password: password,
 					name: name,
-					phone_number: phone_number
+					phone_number: phone_number,
+					instagram: instagram,
+					facebook: facebook,
+					twitter: twitter,
+					github: github
 				}
-				const response = await fetch(`${apiUrl}/api/profile`, {
+				const response = await fetch(`${apiUrl}/api/private`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',
@@ -141,11 +158,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				const { status, message, data } = await response.json();
 				console.log(data);
-				if (status === 'Failed') {
+				if (status === 'failed') {
 					toast.error(message);
 				}
 
-				if (status === 'Success') {
+				if (status === 'success') {
 					Swal.fire({
 						icon: 'success',
 						title: message,

@@ -1,19 +1,19 @@
 from flask_sqlalchemy import SQLAlchemy
-
 db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), default=True, unique=False, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
+    is_active = db.Column(db.Boolean(), default=True)
     profile = db.relationship('Profile', backref='users', uselist=False)
 
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
+            "is_active": self.is_active,
             "profile":self.profile.serialize()
             # do not serialize the password, its a security breach
         }
@@ -45,10 +45,10 @@ class Profile(db.Model):
             "id":self.id,
             "name":self.name,
             "phone_number":self.phone_number,
-            "instagram":self.instagram,
-            "facebook":self.facebook,
-            "twitter":self.twitter,
-            "github":self.github,
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "twitter": self.twitter,
+            "github": self.github
         }
 
     def save(self):
