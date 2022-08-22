@@ -37,8 +37,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json',
-						'Access-Control-Allow-Origin': 'https://blooming-plains-05423.herokuapp.com/',
-						'Access-Control-Allow-Credentials': true
+						'Access-Control-Allow-Origin': '*',
+						//'Access-Control-Allow-Credentials': true,
+						//'Access-Control-Allow-Methods': 'POST'
 					},
 					body: JSON.stringify(campos)
 				});
@@ -76,6 +77,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						'Content-Type': 'application/json',
 						'Access-Control-Allow-Origin': '*',
+						'Access-Control-Allow-Credentials': true,
+						'Access-Control-Allow-Methods': 'POST'
 					},
 					body: JSON.stringify(campos)
 				});
@@ -159,6 +162,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						'Content-Type': 'application/json',
 						'Access-Control-Allow-Origin': '*',
+						'Access-Control-Allow-Credentials': true,
+						'Access-Control-Allow-Methods': 'PUT',
 						'Authorization': `Bearer ${currentUser?.access_token}`
 					},
 					body: JSON.stringify(campos)
