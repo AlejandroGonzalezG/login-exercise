@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			apiUrl: 'https://5000-alejandrogo-loginexerci-2oponp52775.ws-us62.gitpod.io',
+			apiUrl: 'http://127.0.0.1:5000',
 			email: '',
 			password: '',
 			name: '',
