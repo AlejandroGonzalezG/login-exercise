@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			apiUrl: 'http://127.0.0.1:5000',
+			apiUrl: 'https://blooming-plains-05423.herokuapp.com',
 			email: '',
 			password: '',
 			name: '',
