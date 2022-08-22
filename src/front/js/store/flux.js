@@ -34,8 +34,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(`${apiUrl}/api/register`, {
 					method: 'POST',
+					mode: 'cors',
 					headers: {
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': 'https://blooming-plains-05423.herokuapp.com/',
+						'Access-Control-Allow-Credentials': true
 					},
 					body: JSON.stringify(campos)
 				});
@@ -57,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: ''
 					})
 
-					history.push('/');
+					history.push('/login');
 				}
 			},
 			handleLogin: async (e, history) => {
@@ -69,8 +72,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(`${apiUrl}/api/login`, {
 					method: 'POST',
+					mode: 'cors',
 					headers: {
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*',
 					},
 					body: JSON.stringify(campos)
 				});
@@ -150,8 +155,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(`${apiUrl}/api/private`, {
 					method: 'PUT',
+					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*',
 						'Authorization': `Bearer ${currentUser?.access_token}`
 					},
 					body: JSON.stringify(campos)
